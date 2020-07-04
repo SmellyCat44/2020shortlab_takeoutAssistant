@@ -1,0 +1,2 @@
+# 2020shortlab_takeoutAssistant
+JDBC学习
