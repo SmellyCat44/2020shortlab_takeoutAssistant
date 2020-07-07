@@ -7,11 +7,11 @@ public class BeanUser {
 	private String user_pwd;
 	private String user_name;
 	private String sex;
-	private int user_tel;
+	private String user_tel;
 	private String email;
 	private String user_city;
 	private Date reg_time;
-	private  boolean is_vip;
+	private String is_vip;
 	private Date vip_due_date;
 	public String getUser_id() {
 		return user_id;
@@ -37,12 +37,6 @@ public class BeanUser {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getUser_tel() {
-		return user_tel;
-	}
-	public void setUser_tel(int user_tel) {
-		this.user_tel = user_tel;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -61,17 +55,22 @@ public class BeanUser {
 	public void setReg_time(Date reg_time) {
 		this.reg_time = reg_time;
 	}
-	public boolean isIs_vip() {
-		return is_vip;
-	}
-	public void setIs_vip(boolean is_vip) {
-		this.is_vip = is_vip;
-	}
 	public Date getVip_due_date() {
 		return vip_due_date;
 	}
 	public void setVip_due_date(Date vip_due_date) {
 		this.vip_due_date = vip_due_date;
 	}
-
+	public String getIs_vip() {
+		return is_vip;
+	}
+	public void setIs_vip(String is_vip) {
+		this.is_vip = is_vip;
+	}
+	public String getUser_tel() {
+		return user_tel;
+	}
+	public void setUser_tel(String user_tel) {
+		this.user_tel = user_tel;
+	}
 }

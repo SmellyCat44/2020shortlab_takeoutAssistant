@@ -1,6 +1,12 @@
 package cn.edu.zucc.takeoutassist.model;
 
 public class BeanShop {
+	public String getShop_pwd() {
+		return shop_pwd;
+	}
+	public void setShop_pwd(String shop_pwd) {
+		this.shop_pwd = shop_pwd;
+	}
 	public String getShop_id() {
 		return shop_id;
 	}
@@ -32,6 +38,7 @@ public class BeanShop {
 		this.sum_vlm = sum_vlm;
 	}
 	private String shop_id;
+	private String shop_pwd;
 	private String shop_name;
 	private String shop_rank;
 	private double avg_csm;

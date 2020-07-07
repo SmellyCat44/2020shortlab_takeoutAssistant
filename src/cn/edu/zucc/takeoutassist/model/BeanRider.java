@@ -3,6 +3,12 @@ package cn.edu.zucc.takeoutassist.model;
 import java.util.Date;
 
 public class BeanRider {
+	public String getR_pwd() {
+		return r_pwd;
+	}
+	public void setR_pwd(String r_pwd) {
+		this.r_pwd = r_pwd;
+	}
 	public String getR_id() {
 		return r_id;
 	}
@@ -28,6 +34,7 @@ public class BeanRider {
 		this.r_rank = r_rank;
 	}
 	private String r_id;
+	private String r_pwd;
 	private String r_name;
 	private Date r_date;//入职日期
 	private String r_rank;

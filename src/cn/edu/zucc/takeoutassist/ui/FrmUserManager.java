@@ -18,32 +18,35 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import cn.edu.zucc.takeoutassist.control.RiderManager;
-import cn.edu.zucc.takeoutassist.control.ShopManager;
-import cn.edu.zucc.takeoutassist.model.BeanRider;
-import cn.edu.zucc.takeoutassist.model.BeanShop;
+import cn.edu.zucc.takeoutassist.control.UserManager;
+import cn.edu.zucc.takeoutassist.model.BeanUser;
 import cn.edu.zucc.takeoutassist.util.BaseException;
 import cn.edu.zucc.takeoutassist.util.BusinessException;
 
-public class FrmRiderManager extends JDialog implements ActionListener{
+public class FrmUserManager extends JDialog implements ActionListener{
 	private JPanel toolBar = new JPanel();
-	private Button btnAdd = new Button("添加骑手");
+	private Button btnAdd = new Button("添加用户");
 	private Button btnResetPwd = new Button("重置密码");
-	private Button btnDelete = new Button("删除骑手");
-	private Object tblTitle[]={"账号","密码","姓名","骑手身份","入职日期"};
+	private Button btnDelete = new Button("删除用户");
+	private Object tblTitle[]={"账号","密码","姓名","性别","电话","邮箱","所在城市","注册时间","是否为会员","会员到期时间"};
 	private Object tblData[][];
 	DefaultTableModel tablmod=new DefaultTableModel();
 	private JTable userTable=new JTable(tablmod);
 	private void reloadUserTable(){
 		try {
-			List<BeanRider> rider=(new RiderManager()).loadAllRider(false);
-			tblData =new Object[rider.size()][5];
-			for(int i=0;i<rider.size();i++){
-				tblData[i][0]=rider.get(i).getR_id();
-				tblData[i][1]=rider.get(i).getR_pwd();
-				tblData[i][2]=rider.get(i).getR_name();
-				tblData[i][3]=rider.get(i).getR_rank();
-				tblData[i][4]=rider.get(i).getR_date();
+			List<BeanUser> users=(new UserManager()).loadAllUsers(false);
+			tblData =new Object[users.size()][10];
+			for(int i=0;i<users.size();i++){
+				tblData[i][0]=users.get(i).getUser_id();
+				tblData[i][1]=users.get(i).getUser_pwd();
+				tblData[i][2]=users.get(i).getUser_name();
+				tblData[i][3]=users.get(i).getSex();
+				tblData[i][4]=users.get(i).getUser_tel();
+				tblData[i][5]=users.get(i).getEmail();
+				tblData[i][6]=users.get(i).getUser_city();
+				tblData[i][7]=users.get(i).getReg_time();
+				tblData[i][8]=users.get(i).getIs_vip();
+				tblData[i][9]=users.get(i).getVip_due_date();
 			}
 			tablmod.setDataVector(tblData,tblTitle);
 			this.userTable.validate();
@@ -54,7 +57,7 @@ public class FrmRiderManager extends JDialog implements ActionListener{
 		}
 	}
 	
-	public FrmRiderManager(Frame f, String s, boolean b) {
+	public FrmUserManager(Frame f, String s, boolean b) {
 		super(f, s, b);
 		toolBar.setLayout(new FlowLayout(FlowLayout.LEFT));
 		toolBar.add(btnAdd);
@@ -66,7 +69,7 @@ public class FrmRiderManager extends JDialog implements ActionListener{
 		this.getContentPane().add(new JScrollPane(this.userTable), BorderLayout.CENTER);
 		
 		// 屏幕居中显示
-		this.setSize(800, 600);
+		this.setSize(1000, 600);
 		double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 		this.setLocation((int) (width - this.getWidth()) / 2,
@@ -84,24 +87,26 @@ public class FrmRiderManager extends JDialog implements ActionListener{
 		});
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		if(e.getSource()==this.btnAdd){
-			FrmRiderManager_AddUser dlg=new FrmRiderManager_AddUser(this,"添加账号",true);
+			FrmUserManager_AddUser dlg=new FrmUserManager_AddUser(this,"添加账号",true);
 			dlg.setVisible(true);
-			if(dlg.getRider()!=null){//刷新表格
+			if(dlg.getUser()!=null){//刷新表格
 				this.reloadUserTable();
 			}
 		}
 		else if(e.getSource()==this.btnResetPwd){
 			int i=this.userTable.getSelectedRow();
 			if(i<0) {
-				JOptionPane.showMessageDialog(null, "请选择骑手","提示",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,  "请选择账号","提示",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			if(JOptionPane.showConfirmDialog(this,"确定重置密码吗？","确认",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-				String rid=this.tblData[i][0].toString();
+				String userid=this.tblData[i][0].toString();
 				try {
-					(new RiderManager()).resetRidersPwd(rid);
+					(new UserManager()).resetUserPwd(userid);
 					JOptionPane.showMessageDialog(null,  "密码重置完成","提示",JOptionPane.INFORMATION_MESSAGE);
 				} catch (BaseException | BusinessException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage(),"错误",JOptionPane.ERROR_MESSAGE);
@@ -112,13 +117,13 @@ public class FrmRiderManager extends JDialog implements ActionListener{
 		else if(e.getSource()==this.btnDelete){
 			int i=this.userTable.getSelectedRow();
 			if(i<0) {
-				JOptionPane.showMessageDialog(null,  "请选择骑手","提示",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,  "请选择账号","提示",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			if(JOptionPane.showConfirmDialog(this,"确定删除骑手吗？","确认",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-				String rid=this.tblData[i][0].toString();
+			if(JOptionPane.showConfirmDialog(this,"确定删除账号吗？","确认",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+				String userid=this.tblData[i][0].toString();
 				try {
-					(new RiderManager()).deleteRider(rid);//改
+					(new UserManager()).deleteUser(userid);//改
 					this.reloadUserTable();
 				} catch (BaseException | BusinessException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage(),"错误",JOptionPane.ERROR_MESSAGE);
@@ -127,5 +132,4 @@ public class FrmRiderManager extends JDialog implements ActionListener{
 			}
 		}
 	}
-	
 }
