@@ -18,7 +18,7 @@ import cn.edu.zucc.takeoutassist.model.BeanShop;
 import cn.edu.zucc.takeoutassist.util.BaseException;
 import cn.edu.zucc.takeoutassist.util.BusinessException;
 
-public class FrmShopManager_AddUser extends JDialog implements ActionListener{
+public class FrmShopReg extends JDialog implements ActionListener {
 	private BeanShop shop=null;
 	private JPanel toolBar = new JPanel();
 	private JPanel workPane = new JPanel();
@@ -32,7 +32,7 @@ public class FrmShopManager_AddUser extends JDialog implements ActionListener{
 	private JTextField edtShoppwd = new JTextField(20);
 	private JTextField edtShopname = new JTextField(20);
 	
-	public FrmShopManager_AddUser(JDialog f, String s, boolean b) {
+	public FrmShopReg(JDialog f, String s, boolean b) {
 		super(f, s, b);
 		toolBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		toolBar.add(btnOk);

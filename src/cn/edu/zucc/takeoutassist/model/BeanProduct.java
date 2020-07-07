@@ -1,16 +1,16 @@
 package cn.edu.zucc.takeoutassist.model;
 
 public class BeanProduct {
-	public String getP_id() {
+	public int getP_id() {
 		return p_id;
 	}
-	public void setP_id(String p_id) {
+	public void setP_id(int p_id) {
 		this.p_id = p_id;
 	}
-	public String getType_id() {
+	public int getType_id() {
 		return type_id;
 	}
-	public void setType_id(String type_id) {
+	public void setType_id(int type_id) {
 		this.type_id = type_id;
 	}
 	public String getP_name() {
@@ -31,8 +31,8 @@ public class BeanProduct {
 	public void setP_dsc_price(Double p_dsc_price) {
 		this.p_dsc_price = p_dsc_price;
 	}
-	private String p_id;
-	private String type_id;
+	private int p_id;
+	private int type_id;
 	private String p_name;
 	private Double p_price;
 	private Double p_dsc_price;//”≈ª›º€∏Ò

@@ -26,13 +26,14 @@ public class SelectUserType extends JDialog implements ActionListener {
 	private Button btnCancel = new Button("取消");
 	private JLabel labelTip = new JLabel("请选择你要注册的用户类型");
 	private JComboBox cmbUsertype= new JComboBox(new String[] {"用户","商家","骑手"});
-	public SelectUserType(Frame f, String s, boolean b) {
-		super(f, s, b);
+	public SelectUserType(FrmLogin frmLogin, String s, boolean b) {
+		super(frmLogin, s, b);
 		toolBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		toolBar.add(btnOk);
 		toolBar.add(btnCancel);
 		this.getContentPane().add(toolBar, BorderLayout.SOUTH);
 		workPane.add(labelTip);
+		workPane.add(cmbUsertype);
 		this.getContentPane().add(workPane, BorderLayout.CENTER);
 		this.setSize(300, 140);
 		// 屏幕居中显示
@@ -62,7 +63,18 @@ public class SelectUserType extends JDialog implements ActionListener {
 				JOptionPane.showMessageDialog(null,  "请选择注册账号类别","提示",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			
+			else if(this.cmbUsertype.getSelectedIndex()==0) {//用户注册
+				FrmUserReg dlg=new FrmUserReg(this,"用户注册",true);
+				dlg.setVisible(true);
+			}
+            else if(this.cmbUsertype.getSelectedIndex()==1) {//商家注册
+            	FrmShopReg dlg=new FrmShopReg(this,"商家注册",true);
+            	dlg.setVisible(true);
+			}
+            else if(this.cmbUsertype.getSelectedIndex()==2) {//骑手注册
+            	FrmRiderReg dlg=new FrmRiderReg(this,"骑手注册",true);
+            	dlg.setVisible(true);
+			}
 		}
 	}
 }

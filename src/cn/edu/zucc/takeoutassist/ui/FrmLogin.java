@@ -29,6 +29,7 @@ import cn.edu.zucc.takeoutassist.model.BeanShop;
 import cn.edu.zucc.takeoutassist.model.BeanUser;
 import cn.edu.zucc.takeoutassist.util.BaseException;
 import cn.edu.zucc.takeoutassist.util.BusinessException;
+import cn.edu.zucc.takeoutassist.ui.SelectUserType;
 
 public class FrmLogin extends JDialog implements ActionListener{
 	private JPanel toolBar = new JPanel();
@@ -136,7 +137,7 @@ public class FrmLogin extends JDialog implements ActionListener{
 			} else if (e.getSource() == this.btnCancel) {
 				System.exit(0);
 			} else if(e.getSource() == this.btnReg) {//注册
-				SelectUserType dlg = new SelectUserType(this,"选择用户类型",true);
+				SelectUserType dlg = new SelectUserType(this,"注册",true);
 				dlg.setVisible(true);
 			}
 		}

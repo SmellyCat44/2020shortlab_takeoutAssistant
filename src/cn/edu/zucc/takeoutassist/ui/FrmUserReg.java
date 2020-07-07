@@ -18,7 +18,7 @@ import cn.edu.zucc.takeoutassist.model.BeanUser;
 import cn.edu.zucc.takeoutassist.util.BaseException;
 import cn.edu.zucc.takeoutassist.util.BusinessException;
 
-public class FrmUserManager_AddUser extends JDialog implements ActionListener {
+public class FrmUserReg extends JDialog implements ActionListener {
 	private BeanUser user=null;
 	private JPanel toolBar = new JPanel();
 	private JPanel workPane = new JPanel();
@@ -40,10 +40,10 @@ public class FrmUserManager_AddUser extends JDialog implements ActionListener {
 	private JTextField edtUsersex = new JTextField(20);//
 	private JTextField edtUsertel = new JTextField(20);//
 	private JTextField edtUseremail = new JTextField(20);//
-	private JTextField edtUservip = new JTextField(20);//
-	private JTextField edtUsercity = new JTextField(20);//
+	private JTextField edtUservip = new JTextField(16);//
+	private JTextField edtUsercity = new JTextField(18);//
 	
-	public FrmUserManager_AddUser(JDialog f, String s, boolean b) {
+	public FrmUserReg(JDialog f, String s, boolean b) {
 		super(f, s, b);
 		toolBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		toolBar.add(btnOk);

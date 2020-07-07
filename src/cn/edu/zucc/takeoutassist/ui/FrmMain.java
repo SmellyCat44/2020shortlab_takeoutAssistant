@@ -34,13 +34,13 @@ public class FrmMain extends JFrame implements ActionListener{
     private JMenuItem  menuItem_RiderManager=new JMenuItem("骑手管理");
     private JMenuItem  menuItem_MngManager=new JMenuItem("管理员管理");
     
-    //查询信息
-    private JMenuItem  menuItem_UserConsumeSearch=new JMenuItem("用户消费情况查询");   
+    //查询信息 需修改！！！
+    private JMenuItem  menuItem_UserConsumeSearch=new JMenuItem("用户消费情况查询");
     private JMenuItem  menuItem_RiderInfoSearch=new JMenuItem("骑手信息查询");
     private JMenuItem  menuItem_ProductTypeSearch=new JMenuItem("分类商品情况查询");
     private JMenuItem  menuItem_ProductSearch=new JMenuItem("商品单品情况查询");
     
-    //我是用户
+    //我是用户 需修改！！！
     private JMenuItem  menuItem_UserOrder=new JMenuItem("点单");   
     private JMenuItem  menuItem_ProductComment=new JMenuItem("评价商品");
     private JMenuItem  menuItem_RiderComment=new JMenuItem("评价骑手");
@@ -49,10 +49,14 @@ public class FrmMain extends JFrame implements ActionListener{
     //我是骑手
     private JMenuItem  menuItem_TakeOrder=new JMenuItem("接单");   
     private JMenuItem  menuItem_AccountSearch=new JMenuItem("查询账户");
-    private JMenuItem  menuItem_RiderChangePwd=new JMenuItem("修改密码");//
+    private JMenuItem  menuItem_RiderChgPwd=new JMenuItem("修改密码");//
     
     //我是商家
-    
+    private JMenuItem  menuItem_ViewOrder=new JMenuItem("查看订单");
+    private JMenuItem  menuItem_ManageProduct=new JMenuItem("管理商品信息");   
+    private JMenuItem  menuItem_DiscountPlan=new JMenuItem("管理满减方案");
+    private JMenuItem  menuItem_GatherToPresent=new JMenuItem("管理集单送券");
+    private JMenuItem  menuItem_ShopChgPwd=new JMenuItem("修改密码");
     
     private FrmLogin dlgLogin=null;//登陆界面
 	private JPanel statusBar = new JPanel();
@@ -86,7 +90,17 @@ public class FrmMain extends JFrame implements ActionListener{
 	        //}
 		
 	    //我是商家
-	    menubar.add(this.menu_Shop);//加！！！！！
+	    menu_Shop.add(this.menuItem_ViewOrder);
+	    menuItem_ViewOrder.addActionListener(this);
+	    menu_Shop.add(this.menuItem_ManageProduct);
+	    menuItem_ManageProduct.addActionListener(this);
+	    menu_Shop.add(this.menuItem_DiscountPlan);
+	    menuItem_DiscountPlan.addActionListener(this);
+	    menu_Shop.add(this.menuItem_GatherToPresent);
+	    menuItem_GatherToPresent.addActionListener(this);
+	    menu_Shop.add(this.menuItem_ShopChgPwd);
+	    menuItem_ShopChgPwd.addActionListener(this);
+	    menubar.add(this.menu_Shop);
 	    
 	    //用户点外卖
 	    menu_User.add(this.menuItem_UserOrder);
@@ -104,8 +118,8 @@ public class FrmMain extends JFrame implements ActionListener{
 	    menuItem_TakeOrder.addActionListener(this);
 	    menu_Rider.add(this.menuItem_AccountSearch);
 	    menuItem_AccountSearch.addActionListener(this);
-	    menu_Rider.add(this.menuItem_RiderChangePwd);
-	    menuItem_RiderChangePwd.addActionListener(this);
+	    menu_Rider.add(this.menuItem_RiderChgPwd);
+	    menuItem_RiderChgPwd.addActionListener(this);
 	    menubar.add(this.menu_Rider);
 	    
 	    //状态栏
@@ -175,6 +189,10 @@ public class FrmMain extends JFrame implements ActionListener{
 //			FrmProductComment dlg=new FrmProductComment(this,"评价商品",true);
 //			dlg.setVisible(true);
 		}
+		else if(e.getSource()==this.menuItem_ProductComment) {
+//			FrmPayVip dlg=new FrmPayVip(this,"充值会员",true);
+//			dlg.setVisible(true);
+		}
 		else if(e.getSource()==this.menuItem_RiderComment) {
 //			FrmRiderComment dlg=new FrmRiderComment(this,"评价骑手",true);
 //			dlg.setVisible(true);
@@ -186,12 +204,35 @@ public class FrmMain extends JFrame implements ActionListener{
 //			dlg.setVisible(true);
 		}
 		else if(e.getSource()==this.menuItem_AccountSearch) {
-//			FrmAccountSearch dlg=new FrmAccountSearch(this,"点单",true);
+//			FrmAccountSearch dlg=new FrmAccountSearch(this,"查询账户",true);
+//			dlg.setVisible(true);
+		}
+		else if(e.getSource()==this.menuItem_RiderChgPwd) {
+//			FrmRiderChgPwd dlg=new FrmRiderChgPwd(this,"修改密码",true);
 //			dlg.setVisible(true);
 		}
 		
 		//我是商家
-		
+		else if(e.getSource()==this.menuItem_ViewOrder) {
+			FrmViewOrder dlg=new FrmViewOrder(this,"查看订单",true);
+			dlg.setVisible(true);
+		}
+		else if(e.getSource()==this.menuItem_ManageProduct) {
+			FrmManageProduct dlg=new FrmManageProduct(this,"管理商品信息",true);
+			dlg.setVisible(true);
+		}
+		else if(e.getSource()==this.menuItem_DiscountPlan) {
+//			FrmDiscountPlan dlg=new FrmDiscountPlan(this,"管理满减方案",true);
+//			dlg.setVisible(true);
+		}
+		else if(e.getSource()==this.menuItem_GatherToPresent) {
+//			FrmGatherToPresent dlg=new FrmGatherToPresent(this,"管理集单送券方案",true);
+//			dlg.setVisible(true);
+		}
+		else if(e.getSource()==this.menuItem_ShopChgPwd) {
+//			FrmShopChgPwd dlg=new FrmShopChgPwd(this,"修改密码",true);
+//			dlg.setVisible(true);
+		}
 
 	} 
 }
